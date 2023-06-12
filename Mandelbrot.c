@@ -6,73 +6,79 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:56 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/07 02:56:26 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/12 14:24:52 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+int color_degrade_MNDLBRT(int itr)
+{
+	int			t;
+	int			r;
+	int			g; 
+	int			b;
+	
+	t = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x00FF0000 * 0x0000FF00 * 0x000000FF;
+	r = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x00FF0000;
+	g = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x0000FF00;
+	b = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x000000FF;
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
 int mandelbrot(double x, double y)
 {
     double a;
     double b;
-    
     double l;
     double k;
-    
     double p;
-    
     double r;
     double i;
 
-    a = ((x - (800 / 2)) / (800 / 4));
-    b = ((y - (800 / 2)) / (800 / 4));
+    a = ((x - (width / 2)) / (width / 4));
+    b = ((y - (heigth / 2)) / (heigth / 4));
     k = a;
     l = b;
     p = 0.0;
-    while(p < ITR)
+    while(p < ITR && ((a * a) + (b * b) < 4))
     {
         r = (a * a) - (b * b);
-        i = 2 * b * a;
-        
+        i = 2 * b * a; 
         a = r + k;
         b = i + l;
-        if((a * a) + (b * b) > 4)
-            break;
         p++;
     }
-    return p;
+    return (p);
 }
 
+void MNDLBRT_function_pixel_put(t_data *x)
+{
+    double			i;
+	double			j;
+	int				itr;
 
-
-
-
-// void change_repaire(int x, int y)
-// {
-//     int         i;
-//     int         j;
-    
-//     i = ((x - (500 / 2)) / (500 / 4));
-//     j = ((y - (500 / 2)) / (500 / 4));
-//     The_Mandelbrot_Set(i, j);
-// }
-
-// void ft_Mandelbrot(void *mlx_ptr, void *win_ptr)
-// {
-//     int         x;
-//     int         y;
-//     int         i;
-//     int         j;
-
-//     mlx_ptr = mlx_init();
-//     win_ptr = mlx_new_window(mlx_ptr, 500, 500, "the greate window in mlx");
-
-//     while (x < 500)
-//     {
-//         while (y < 500)
-//         {
-//            change_repaire(x, y);
-//         }
-//     }
-//     mlx_loop (mlx_ptr);
+	i = 0.0;
+	itr = 0;
+	while (i < heigth){
+        j = 0.0;
+		while (j < width) 
+		{
+			itr = mandelbrot(i, j);
+			if (itr == ITR)
+				my_mlx_pixel_put(x,i,j, color_degrade_MNDLBRT((itr ^ 10) * (itr ^ 10) * itr * itr));
+			else
+				my_mlx_pixel_put(x,i,j, color_degrade_MNDLBRT(itr * itr * itr * itr * (itr ^ 10)));
+			j++;
+		}
+        i++;
+	}
+}

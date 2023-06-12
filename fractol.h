@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:20 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/07 03:31:41 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/12 14:22:19 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+#include <math.h>
 
-#define ITR 100
+#define ITR 80
+#define width 1000
+#define heigth 1000
+
 
 typedef struct	s_data
 {
@@ -31,9 +35,18 @@ typedef struct	s_data
 	void    *win_ptr;
 }				t_data;
 
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int 		mandelbrot(double x, double y);
+int 		Julia(double x, double y);
+void		Julia_function_pixel_put(t_data *x);
+void		MNDLBRT_function_pixel_put(t_data *x);
 
-int mandelbrot(double x, double y);
-void ft_Mandelbrot(void *mlx_ptr, void *win_ptr);
 
+// double		sin(double angle);
+// double		cos(double angle);
+// int			trgb(double it);
+// void		MNDLBRT_function_pixel_put(t_data *x);
+// int			Julia(double x, double y);
+// void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif
