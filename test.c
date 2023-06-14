@@ -205,3 +205,34 @@ int     mlx_do_sync(void *mlx_ptr);
 //     }
 //     return p;
 // }
+
+
+
+
+// #include <stdio.h>
+
+// int     ft_strcmp(char *s1, char *s2)
+// {
+//         int                     i;
+
+//         i = 0;
+//         while (s1[i] && s2[i] && s1[i] == s2[i])
+//         {
+//                 i++;
+//         }
+//         return (s1[i] - s2[i]);
+// }
+
+// int main ()
+// {
+// 	printf("%d", ft_strcmp("hello world loop", "hello world loop"));
+// }
+
+
+
+
+     // a = r + -0.74543;
+        // b = i + 0.11301;
+        //printf("%f, %f\n", data->x_j, data->y_j);
+        // data->x_j = -0.74543;
+        // data->y_j = 0.11301;

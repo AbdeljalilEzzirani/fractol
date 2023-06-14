@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:12 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/12 14:37:39 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:32:48 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,59 +16,57 @@
 void mlx_Function(t_data *x)
 {	
     x->mlx_ptr = mlx_init();
-    x->win_ptr = mlx_new_window(x->mlx_ptr, width, heigth, "the greate window in mlx 1337");
+    x->win_ptr = mlx_new_window(x->mlx_ptr, width, heigth, "fractol");
 	x->img = mlx_new_image(x->mlx_ptr, width, heigth);
 	x->addr = mlx_get_data_addr(x->img, &x->bits_per_pixel, &x->line_length, &x->endian);
 }
 
 void mlx_job(t_data *x)
 {
+	if(x->digit == 1)
+		mlx_hook(x->win_ptr, 6, 0, &julia_move, x);
+	// mlx_clear_window(x->mlx_ptr, x->win_ptr);
 	mlx_put_image_to_window(x->mlx_ptr,x->win_ptr,x->img, 0, 0);
     mlx_loop(x->mlx_ptr);
 }
 
-// int main(int ac, char **av)
-// {
-// 	t_data			x;
-// 	int				i;
-
-// 	i = 0;
-// 	if (ac == 2 || av[1] == "./Mandelbrot")
-// 	{
-// 		mlx_Function(&x);
-// 		MNDLBRT_function_pixel_put(&x);
-// 	}
-// 		mlx_job(&x);
-	
-// }
-
-int     ft_strncmp(const char *s1, const char *s2, size_t n)
+int ft_strcmp(char *s1, char *s2)
 {
-        size_t                  i;
+        int                     i;
 
         i = 0;
-        if (n == 0)
-                return (0);
-        while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0' && i < n - 1)
+        while (s1[i] && s2[i] && s1[i] == s2[i])
+        {
                 i++;
-        return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+        }
+        return (s1[i] - s2[i]);
 }
 
 int main(int ac, char **av)
 {
 	t_data			x;
-	int				i;
 
-	i = 0;
-	if (ac == 1)
+	mlx_Function(&x);
+	if (ac == 2)
 	{
-		mlx_Function(&x);
-		if (ft_strncmp(av[0], "./Mandelbrot", 12))
-			Julia_function_pixel_put(&x);
-		else if (!ft_strncmp(av[1], "./Julia", 12))
+		if (!ft_strcmp(av[1], "Mandelbrot"))
+		{
+			x.digit = 0;
 			MNDLBRT_function_pixel_put(&x);
+			// return (0);
+		}
+		else if (!ft_strcmp(av[1], "Julia"))
+		{
+			x.digit = 1;
+			Julia_function_pixel_put(&x);
+		}
 		else
-			printf ("No mandelbrot |&&| No Julia");
+		{
+			printf ("⛔️ No mandelbrot |&&| No Julia ⛔️ \n");
+			return (0);
+		}
+		mlx_job(&x);
 	}
-	mlx_job(&x);
+    else
+		printf ("🚨 Please enter Just two arguments 🚨 \n");
 }
