@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:17 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/14 02:02:24 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/16 00:23:27 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,12 @@ int color_degrade_Julia(int itr)
 
 int julia_move(int x, int y, t_data *param)
 {
-    param->x_j = x/400.0;
-    param->y_j = y/400.0;
-    Julia_function_pixel_put(param);
+    if (x >= 0 && y >= 0 && x <= width && y <= heigth)
+    {
+        param->x_j = (x - width/1.9)/width;
+        param->y_j = (y - heigth/1.9)/heigth;
+        Julia_function_pixel_put(param);
+    }
     return 0;
 }
 
@@ -50,8 +53,11 @@ int Julia(double x, double y, t_data *data)
     double r;
     double i;
 
-    a = ((x - (width / 2)) / (width / 4));
-    b = ((y - (heigth / 2)) / (heigth / 4));
+    // if (x >= 0 && x <= width && y >= 0 && y <= heigth)
+    // {
+    a = ((x - (width / 2)) / data->zoom);
+    b = ((y - (heigth / 2)) / data->zoom);
+    // }
     k = a;
     l = b;
     p = 0.0;
@@ -63,6 +69,9 @@ int Julia(double x, double y, t_data *data)
         b = i + data->y_j;
         p++;
     }
+        // printf("x ---> %f : ", x);
+        // printf("y ---> %f : \n", y);
+        
     return (p);
 }
 
@@ -90,6 +99,7 @@ void Julia_function_pixel_put(t_data *x)
 		}
         i++;
 	}
+    // mlx_hook();
     mlx_clear_window(x->mlx_ptr, x->win_ptr);
     mlx_put_image_to_window(x->mlx_ptr,x->win_ptr,x->img, 0, 0);
 }

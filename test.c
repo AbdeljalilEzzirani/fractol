@@ -236,3 +236,51 @@ int     mlx_do_sync(void *mlx_ptr);
         //printf("%f, %f\n", data->x_j, data->y_j);
         // data->x_j = -0.74543;
         // data->y_j = 0.11301;
+
+
+
+		// mlx_hook(fractol.win_ptr, 2, 0, "function key_exit", &fractol);
+		key for -> (X)  -->>>   17
+
+
+	// param->width_zoom = width;
+	// param->heigth_zoom = heigth;
+	// if (button == 4)
+	// {
+	// 	x = param->width_zoom - (width / 10);
+	// 	y = param->heigth_zoom - (heigth / 10);
+	// }
+	// else if (button == 5)
+	// {
+	// 	x = param->width_zoom - (width / 10);
+	// 	y = param->heigth_zoom - (heigth / 10);
+	// }
+	// mlx_destroy_image(param->mlx_ptr, param->img);
+	// param->img = mlx_new_image(param->mlx_ptr, width, heigth);
+	// param->addr = mlx_get_data_addr(param->img, &param->bits_per_pixel, &param->line_length, &param->endian);
+	// if (param->set == 0)
+	// 	MNDLBRT_function_pixel_put(param);
+
+
+
+
+
+// int	key_hook(int keycode, t_data *x)
+// {
+// 	help_key_hook(keycode, x);
+// 	if (keycode == 123)
+// 		x->x += 0.1;
+// 	else if (keycode == 124)
+// 		x->x -= 0.1;
+// 	else if (keycode == 125)
+// 		x->y -= 0.1;
+// 	else if (keycode == 126)
+// 		x->y += 0.1;
+// 	else if (keycode == 53)
+// 		destroy(x);
+// 	mlx_clear_window(x->mlx_ptr, x->win_ptr);
+// 	mandelbrot(x, x->c_real, x->c_img);
+// 	mlx_put_image_to_window(x->mlx_ptr,
+// 		x->win_ptr, x->img_ptr, 0, 0);
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:12 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/13 15:32:48 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/16 03:43:54 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,17 @@ void mlx_Function(t_data *x)
 
 void mlx_job(t_data *x)
 {
-	if(x->digit == 1)
+	if(x->set == 1)
 		mlx_hook(x->win_ptr, 6, 0, &julia_move, x);
-	// mlx_clear_window(x->mlx_ptr, x->win_ptr);
+	mlx_clear_window(x->mlx_ptr, x->win_ptr);
+	mlx_key_hook(x->win_ptr, flesh_key_hook, x);
+	mlx_key_hook(x->win_ptr, close_window, x);
+	// mlx_key_hook(x->win_ptr, change_color, x);
 	mlx_put_image_to_window(x->mlx_ptr,x->win_ptr,x->img, 0, 0);
-    mlx_loop(x->mlx_ptr);
-}
-
-int ft_strcmp(char *s1, char *s2)
-{
-        int                     i;
-
-        i = 0;
-        while (s1[i] && s2[i] && s1[i] == s2[i])
-        {
-                i++;
-        }
-        return (s1[i] - s2[i]);
+	mlx_mouse_hook(x->win_ptr, f_zoom, x);// for zoom
+	mlx_hook(x->win_ptr, 17, 0, check_button, &x);
+	// mlx_hook(x->win_ptr, 53, 0, check_button, &x);// deyalach diik 256 raah janii ne3aasss
+	mlx_loop(x->mlx_ptr);
 }
 
 int main(int ac, char **av)
@@ -49,24 +43,29 @@ int main(int ac, char **av)
 	mlx_Function(&x);
 	if (ac == 2)
 	{
+		x.zoom = width/4;
 		if (!ft_strcmp(av[1], "Mandelbrot"))
 		{
-			x.digit = 0;
+			x.set = 0;
 			MNDLBRT_function_pixel_put(&x);
 			// return (0);
 		}
 		else if (!ft_strcmp(av[1], "Julia"))
 		{
-			x.digit = 1;
+			x.set = 1;
 			Julia_function_pixel_put(&x);
 		}
 		else
 		{
-			printf ("⛔️ No mandelbrot |&&| No Julia ⛔️ \n");
+			// printf ("⛔️ No mandelbrot |&&| No Julia ⛔️ \n");
+			msg_list_display();
 			return (0);
 		}
 		mlx_job(&x);
 	}
     else
-		printf ("🚨 Please enter Just two arguments 🚨 \n");
+	{
+		msg_list_display();
+	}
+		// ft_putstr ("🚨 Please enter Just two arguments 🚨 \n");
 }
