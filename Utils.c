@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:19:35 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/16 01:42:41 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/16 23:26:47 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,9 @@ void    ft_putstr(char *s)
 
 void msg_list_display(void)
 {
-	// t_data	x;
-	ft_putstr("you can use fractol please read this list : \n");
+	ft_putstr("if you can use fractol please read this list : \n");
 	ft_putstr("if you use Mandelbrot print --> < ./fractol Mandelbrot > \n");
 	ft_putstr("if you use Julia print --> < ./fractol Julia > \n");
-	// ft_putstr("if you use  print --> < ./fractol  >");
-	// mlx_destroy_window(x.mlx_ptr, x.win_ptr);
 	exit(0);
 }
 
@@ -56,38 +53,30 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 }
 
 int flesh_key_hook(int keycode, t_data *param)
-{
-    double     x = 0.0;
-    double     y = 0.0;
-    
+{   
+    if(keycode == 53)
+    {
+        mlx_destroy_image(param->mlx_ptr, param->img);
+		mlx_destroy_window(param->mlx_ptr, param->win_ptr);
+        mlx_clear_window(param->mlx_ptr, param->win_ptr);
+        exit(0);
+    }
+    if (keycode == 257 || keycode == 258)
+    {
+        color_degrade_Julia((ITR / 255) * 255);
+    }
     if (keycode == 126)
-        y = y - 0.2;
+        param->y -= 50;
     else if (keycode == 125)
-        y = y + 0.2;
+        param->y += 50;
     else if (keycode == 123)
-        x = x - 0.2;
+        param->x -= 50;
     else if (keycode == 124)
-        x = x + 0.2;
-    mlx_clear_window(param->mlx_ptr, param->win_ptr);
-    mandelbrot(x, y, param);
-    mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img, 0, 0);
+        param->x += 50;
+	if(param->set == 0)
+		MNDLBRT_function_pixel_put(param);
+	else if(param->set == 1)
+		Julia_function_pixel_put(param);
     return (0);
 }
 
-
-
-
-// void	struct_double(t_data *x)
-// {
-//     x->x_initial;
-//     x->y_initial;
-//     x->x_final;
-//     x->y_final;
-// }
-
-    // x->zoom = 1;
-
-// x->x_min = -2.0;
-// x->x_max = 2.0;
-// x->y_min = -2.0;
-// x->y_max = 2.0;

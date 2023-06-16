@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:56 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/16 03:24:54 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/16 23:35:58 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ int f_zoom(int button, int x, int y, t_data *param)
 // 	}
 // }
 
-int close_window(int keycode, t_data *param)
-{
-	if (keycode == 53)
-	{
-		exit (0);
-		mlx_destroy_image(param->mlx_ptr, param->img);
-		mlx_clear_window(param->mlx_ptr, param->win_ptr);
-		mlx_destroy_window(param->mlx_ptr, param->win_ptr);
-	}
-	return (0);
-}
+// int close_window(int keycode, t_data *param)
+// {
+// 	if (keycode == 53)
+// 	{
+// 		exit (0);
+// 		mlx_destroy_image(param->mlx_ptr, param->img);
+// 		mlx_clear_window(param->mlx_ptr, param->win_ptr);
+// 		mlx_destroy_window(param->mlx_ptr, param->win_ptr);
+// 	}
+// 	return (0);
+// }
 
 int	check_button(t_data *x)
 {
@@ -110,9 +110,9 @@ void MNDLBRT_function_pixel_put(t_data *x)
 		{
 			itr = mandelbrot(i, j, x);
 			if (itr == ITR)
-				my_mlx_pixel_put(x,i,j, color_degrade_MNDLBRT(0xFFD700));
+				my_mlx_pixel_put(x, i+x->x, j+x->y, color_degrade_MNDLBRT(0xFFD700));
 			else
-				my_mlx_pixel_put(x,i,j, color_degrade_MNDLBRT(0x2F4F4F));
+				my_mlx_pixel_put(x, i+x->x, j+x->y, color_degrade_MNDLBRT(0x2F4F4F));
 			j++;
 		}
         i++;

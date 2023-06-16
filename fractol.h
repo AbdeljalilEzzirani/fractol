@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:20 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/16 03:43:45 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/16 20:01:39 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,25 @@
 
 typedef struct	s_data
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		set;
-	double x_j;
-	double y_j;
-    void    *mlx_ptr;
-	void    *win_ptr;
-	void	*param;
-	int		width_zoom;
-	int		heigth_zoom;
-	int		zawm;
-	int		key_button;
-	double zoom;
-	int		ac;
-	char	av;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			set;
+	double		x_j;
+	double		y_j;
+    void		*mlx_ptr;
+	void		*win_ptr;
+	void		*param;
+	int			width_zoom;
+	int			heigth_zoom;
+	int			zawm;
+	int			key_button;
+	double		zoom;
+	double		x;
+	double		y;
+	
 }				t_data;
 
 void		struct_double(t_data *x);
@@ -61,6 +62,8 @@ int			f_zoom(int button, int x, int y, t_data *param);
 void		msg_list_display(void);
 int			flesh_key_hook(int keycode, t_data *param);
 int			close_window(int keycode, t_data *param);
+int			tab_key_hook(int keycode, t_data *param);
+int			color_degrade_Julia(int itr);
 // int			change_color(int keycode, t_data *param);
 
 

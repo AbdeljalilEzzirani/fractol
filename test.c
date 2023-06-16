@@ -284,3 +284,33 @@ int     mlx_do_sync(void *mlx_ptr);
 // 		x->win_ptr, x->img_ptr, 0, 0);
 // 	return (0);
 // }
+
+
+
+// void	struct_double(t_data *x)
+// {
+//     x->x_initial;
+//     x->y_initial;
+//     x->x_final;
+//     x->y_final;
+// }
+
+    // x->zoom = 1;
+
+// x->x_min = -2.0;
+// x->x_max = 2.0;
+// x->y_min = -2.0;
+// x->y_max = 2.0;
+
+
+    // puts("a");
+    // double     x = 0.0;
+    // double     y = 0.0;
+
+		// mlx_key_hook(x->win_ptr, close_window, x);
+	// mlx_key_hook(x->win_ptr, tab_key_hook, x);
+	// mlx_key_hook(x->win_ptr, change_color, x);
+		// mlx_hook(x->win_ptr, 53, 0, check_button, &x);// deyalach diik 256 raah janii ne3aasss
+		// ft_putstr ("🚨 Please enter Just two arguments 🚨 \n");
+			// printf ("⛔️ No mandelbrot |&&| No Julia ⛔️ \n");
+			// return (0);

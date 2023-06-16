@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:12 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/16 03:43:54 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/16 23:15:18 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ void mlx_job(t_data *x)
 		mlx_hook(x->win_ptr, 6, 0, &julia_move, x);
 	mlx_clear_window(x->mlx_ptr, x->win_ptr);
 	mlx_key_hook(x->win_ptr, flesh_key_hook, x);
-	mlx_key_hook(x->win_ptr, close_window, x);
-	// mlx_key_hook(x->win_ptr, change_color, x);
 	mlx_put_image_to_window(x->mlx_ptr,x->win_ptr,x->img, 0, 0);
 	mlx_mouse_hook(x->win_ptr, f_zoom, x);// for zoom
 	mlx_hook(x->win_ptr, 17, 0, check_button, &x);
-	// mlx_hook(x->win_ptr, 53, 0, check_button, &x);// deyalach diik 256 raah janii ne3aasss
 	mlx_loop(x->mlx_ptr);
 }
 
@@ -48,7 +45,6 @@ int main(int ac, char **av)
 		{
 			x.set = 0;
 			MNDLBRT_function_pixel_put(&x);
-			// return (0);
 		}
 		else if (!ft_strcmp(av[1], "Julia"))
 		{
@@ -57,7 +53,6 @@ int main(int ac, char **av)
 		}
 		else
 		{
-			// printf ("⛔️ No mandelbrot |&&| No Julia ⛔️ \n");
 			msg_list_display();
 			return (0);
 		}
@@ -67,5 +62,4 @@ int main(int ac, char **av)
 	{
 		msg_list_display();
 	}
-		// ft_putstr ("🚨 Please enter Just two arguments 🚨 \n");
 }

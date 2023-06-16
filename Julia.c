@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:17 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/16 00:23:27 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/16 20:00:20 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int color_degrade_Julia(int itr)
 
     r = itr * 3555;
 	g = (1 - itr)  * itr * 3555;
-	b = (1 - itr) * (1 - itr) * itr * 3555;	
+	b = (1 - itr) * (1 - itr) * itr * 3555;
+    // if ()
 	// t = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x00FF0000 * 0x0000FF00 * 0x000000FF;
 	// r = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x00FF0000;
 	// g = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x0000FF00;
@@ -32,12 +33,22 @@ int color_degrade_Julia(int itr)
 	return (0 << 24 | r << 16 | g << 8 | b);
 }
 
+// int tab_key_hook(int keycode, t_data *param)
+// {
+//     (void)param;
+//     if (keycode == 257 || keycode == 258)
+//     {
+//         return (color_degrade_Julia((ITR / 255) * 255));
+//     }
+//     return (0);
+// }
+
 int julia_move(int x, int y, t_data *param)
 {
     if (x >= 0 && y >= 0 && x <= width && y <= heigth)
     {
-        param->x_j = (x - width/1.9)/width;
-        param->y_j = (y - heigth/1.9)/heigth;
+        param->x_j = (x - width / 1.9) / (width / 1.5);
+        param->y_j = (y - heigth / 1.9) / (heigth / 1.5);
         Julia_function_pixel_put(param);
     }
     return 0;
@@ -86,15 +97,17 @@ void Julia_function_pixel_put(t_data *x)
     // x->x_j = 0.99;
     // x->y_j = 1.14;
     // mlx_hook(x->win_ptr, 6, 0, &julia_move, x);
+    // printf("%.2f\n", x -> y);
+    // printf("%.2f\n", x -> x);
 	while (i < heigth){
         j = 0.0;
 		while (j < width) 
 		{
 			itr = Julia(i, j, x);
 			if (itr == ITR)
-				my_mlx_pixel_put(x,i,j, color_degrade_Julia(0xFF141D % 4));
+				my_mlx_pixel_put(x,i+x->x,j+x->y, color_degrade_Julia(0xFF141D % 4));
 			else
-				my_mlx_pixel_put(x,i,j, color_degrade_Julia(0x000000FF % 4));
+				my_mlx_pixel_put(x,i+x->x,j+x->y, color_degrade_Julia(0x000000FF % 4));
 			j++;
 		}
         i++;
