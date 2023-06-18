@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:12 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/16 23:15:18 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/18 20:36:56 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,51 @@ void mlx_job(t_data *x)
 	mlx_key_hook(x->win_ptr, flesh_key_hook, x);
 	mlx_put_image_to_window(x->mlx_ptr,x->win_ptr,x->img, 0, 0);
 	mlx_mouse_hook(x->win_ptr, f_zoom, x);// for zoom
-	mlx_hook(x->win_ptr, 17, 0, check_button, &x);
+	mlx_hook(x->win_ptr, 17, 0, ft_exit, x);
 	mlx_loop(x->mlx_ptr);
+}
+
+void check_fractal(char *scmp, t_data *x)
+{
+	if (!ft_strcmp(scmp, "Mandelbrot"))
+	{
+		x->set = 0;
+		MNDLBRT_function_pixel_put(x);
+	}
+	else if (!ft_strcmp(scmp, "Julia"))
+	{
+		x->set = 1;
+		Julia_function_pixel_put(x);
+	}
+	// else if (!ft_strcmp(scmp, "Burning_Ship"))
+	// {
+	// 	x.set = 2;
+	// 	Burning_Ship_function_pixel_put(&x);
+	// }
+	else
+	{
+		msg_list_display();
+	}
 }
 
 int main(int ac, char **av)
 {
 	t_data			x;
-
+	
 	mlx_Function(&x);
 	if (ac == 2)
 	{
-		x.zoom = width/4;
-		if (!ft_strcmp(av[1], "Mandelbrot"))
-		{
-			x.set = 0;
-			MNDLBRT_function_pixel_put(&x);
-		}
-		else if (!ft_strcmp(av[1], "Julia"))
-		{
-			x.set = 1;
-			Julia_function_pixel_put(&x);
-		}
-		else
-		{
-			msg_list_display();
-			return (0);
-		}
+		x.zoom_width = (4.0 / width);
+		x.zoom_height = (4.0 / heigth);
+		x.var_wid = 2;
+		x.var_hei = 2;
+		check_fractal(av[1], &x);
 		mlx_job(&x);
 	}
     else
 	{
 		msg_list_display();
+		return (2);
 	}
+	return (2);
 }

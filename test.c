@@ -314,3 +314,81 @@ int     mlx_do_sync(void *mlx_ptr);
 		// ft_putstr ("🚨 Please enter Just two arguments 🚨 \n");
 			// printf ("⛔️ No mandelbrot |&&| No Julia ⛔️ \n");
 			// return (0);
+
+
+
+// int change_color(int keycode, t_data *param)
+// {
+// 	if (keycode == 257 || keycode == 258)
+// 	{
+		
+// 	}
+// }
+
+// int close_window(int keycode, t_data *param)
+// {
+// 	if (keycode == 53)
+// 	{
+// 		exit (0);
+// 		mlx_destroy_image(param->mlx_ptr, param->img);
+// 		mlx_clear_window(param->mlx_ptr, param->win_ptr);
+// 		mlx_destroy_window(param->mlx_ptr, param->win_ptr);
+// 	}
+// 	return (0);
+// }
+
+// int	check_button(t_data *x)
+// {
+// 	exit (0);
+// 	mlx_destroy_image(x->mlx_ptr, x->img);
+// 	mlx_clear_window(x->mlx_ptr, x->win_ptr);
+// 	mlx_destroy_window(x->mlx_ptr, x->win_ptr);
+// }
+
+    // if ()
+	// t = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x00FF0000 * 0x0000FF00 * 0x000000FF;
+	// r = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x00FF0000;
+	// g = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x0000FF00;
+	// b = (1 - itr) * (1 - itr) *  itr * itr * (itr ^ 10) * 0x000000FF;
+
+	// int tab_key_hook(int keycode, t_data *param)
+// {
+//     (void)param;
+//     if (keycode == 257 || keycode == 258)
+//     {
+//         return (color_degrade_Julia((ITR / 255) * 255));
+//     }
+//     return (0);
+// }
+
+    // x->x_j = 0.99;
+    // x->y_j = 1.14;
+    // mlx_hook(x->win_ptr, 6, 0, &julia_move, x);
+    // printf("%.2f\n", x -> y);
+    // printf("%.2f\n", x -> x);
+
+
+		// if (button == 1 && x->num == 2)
+		// 	x->stop = 1;
+		// else if (button == 2 && x->num == 2)
+		// 	x->stop = 0;
+
+
+
+		// fc(z)=z^2+C
+// C=r*cos(a)+i*r*sin(a), де: a=(0..2*Pi), r=0,7885.
+
+
+	r = 0;
+	i = 0;
+	itr = 0;
+	while (itr < ITR)
+	{
+		z_real2 = z_real * z_real;
+		z_img2 = z_img * z_img;
+		if (z_real2 + z_img2 > 4)
+			return (nbr_iteration);
+		z_img = 2 * fabs(z_real * z_img) + c_im;
+		z_real = z_real2 - z_img2 + c_re;
+		nbr_iteration++;
+	}
