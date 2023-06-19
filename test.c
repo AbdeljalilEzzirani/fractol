@@ -392,3 +392,24 @@
 // 		z_real = z_real2 - z_img2 + c_re;
 // 		nbr_iteration++;
 // 	}
+
+
+    // if (itr <= itr % 10)
+	//     return (0 << 24 | r << 16 | g << 8 | b);
+    // else if (itr <= itr % 20)
+	//     return (b << 24 | 0 << 16 | r << 8 | g);
+    // else if (itr <= itr % 30)
+	//     return (g << 24 | b << 16 | 0 << 8 | r);
+    // else if (itr <= itr % 40)
+	//     return (r << 24 | g << 16 | b << 8 | 0);
+    // else if (itr <= itr % 50)
+	//     return (b << 24 | r << 16 | g << 8 | 0);
+    // // if (param->trgb == 257)
+    // //     return ((b << 24 | g << 16 | r << 8 | 0));
+    // // if (param->t == 0)
+    // //     return ((g << 24 | r << 16 | b << 8 | 0));
+    // // if (param->r == 1)
+    // //     return ((0 << 24 | g << 16 | r << 8 | b));
+    // // if (param->g == 2)
+    // //     return ((0 << 24 | b << 16 | g << 8 | r));
+    // // if (param->b == 3)

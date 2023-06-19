@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:20 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/19 02:42:14 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:21:26 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 #define ITR 50
 #define width 1000.0
 #define heigth 1000.0
+
+// typedef struct s_data
+// {
+	
+// }				t_new;
+
 
 typedef struct	s_data
 {
@@ -47,9 +53,13 @@ typedef struct	s_data
 	double		zoom;
 	double		x;
 	double		y;
+	int			trgb;
+	int			t;
+	int			r;
+	int			g;
+	int			b;
 }				t_data;
 
-// void		struct_double(t_data *x);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int 		mandelbrot(double x, double y, t_data *data);
 int 		Julia(double x, double y, t_data *data);
@@ -68,17 +78,7 @@ int			tab_key_hook(int keycode, t_data *param);
 int			color_degrade_Julia(int itr);
 int			ft_exit(t_data *param);
 int			shift_change_color(int y);
-int			color_degrade(int itr);
+int			color_degrade(int itr, t_data *param);
 int			Burning_Ship_fractal(double x, double y, t_data *data);
-// int			change_color(int keycode, t_data *param);
-
-
-
-// double		sin(double angle);
-// double		cos(double angle);
-// int			trgb(double it);
-// void		MNDLBRT_function_pixel_put(t_data *x);
-// int			Julia(double x, double y);
-// void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

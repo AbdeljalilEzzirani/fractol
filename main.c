@@ -6,10 +6,9 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:12 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/19 02:54:20 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/19 13:03:34 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "fractol.h"
 
@@ -75,5 +74,5 @@ int main(int ac, char **av)
 		msg_list_display();
 		return (2);
 	}
-	return (2);
+	return (0);
 }

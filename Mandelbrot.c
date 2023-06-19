@@ -6,24 +6,11 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:56 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/19 02:54:51 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:15:05 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-// int color_degrade_MNDLBRT(int itr)
-// {
-// 	int			r;
-// 	int			g; 
-// 	int			b;
-	
-// 	r = (1 - itr) * itr * 3555;
-// 	g = (1 - itr) * (1 - itr)  * itr * 3555;
-// 	b = (1 - itr) * (1 - itr) * (1 - itr) * itr * 3555;
-// 	return (0 << 24 | r << 16 | g << 8 | b);
-// }
-
 
 int f_zoom(int button, int x, int y, t_data *param)
 {
@@ -84,8 +71,6 @@ void MNDLBRT_function_pixel_put(t_data *x)
 	int			j;
 	int				itr;
 
-	// if(x->img != NULL)
-	// 	mlx_destroy_image(x->mlx_ptr, x->img);
 	i = 0;
 	itr = 0;
 	while (i < heigth){
@@ -94,13 +79,12 @@ void MNDLBRT_function_pixel_put(t_data *x)
 		{
 			itr = mandelbrot(i + x->x, j + x->y, x);
 			if (itr == ITR)
-				my_mlx_pixel_put(x, i, j, color_degrade(0xFFD700));
+				my_mlx_pixel_put(x, i, j, color_degrade(0xFFD700, x));
 			else
-				my_mlx_pixel_put(x, i, j, color_degrade(0x2F4F4F));
+				my_mlx_pixel_put(x, i, j, color_degrade(0x2F4F4F, x));
 			j++;
 		}
         i++;
 	}
-	// mlx_clear_window(x->mlx_ptr, x->win_ptr);
     mlx_put_image_to_window(x->mlx_ptr,x->win_ptr,x->img, 0, 0);
 }
