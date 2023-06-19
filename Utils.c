@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:19:35 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/18 20:39:45 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/19 03:02:59 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int flesh_key_hook(int keycode, t_data *param)
 {
-    int         i;
+    static int         i;
 
-    i = 0;
-    if ((keycode == 257 || keycode == 258) && (keycode == 18))
+    i = 1;
+    if (keycode == 257 || keycode == 258)
     {
         color_degrade(i);
         i++;
@@ -66,13 +66,13 @@ int flesh_key_hook(int keycode, t_data *param)
     if (keycode == 53)
         ft_exit(param);
     if (keycode == 126)
-        param->y -= 5;
+        param->y += 10;
     else if (keycode == 125)
-        param->y += 5;
+        param->y -= 10;
     else if (keycode == 123)
-        param->x -= 5;
+        param->x += 10;
     else if (keycode == 124)
-        param->x += 5;
+        param->x -= 10;
 	if(param->set == 0)
     {
         mlx_clear_window(param->mlx_ptr, param->win_ptr);

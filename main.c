@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:12 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/18 20:36:56 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/19 02:54:20 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void check_fractal(char *scmp, t_data *x)
 		x->set = 1;
 		Julia_function_pixel_put(x);
 	}
-	// else if (!ft_strcmp(scmp, "Burning_Ship"))
-	// {
-	// 	x.set = 2;
-	// 	Burning_Ship_function_pixel_put(&x);
-	// }
+	else if (!ft_strcmp(scmp, "Burning_Ship"))
+	{
+		x->set = 2;
+		Burning_Ship_function_pixel_put(x);
+	}
 	else
 	{
 		msg_list_display();

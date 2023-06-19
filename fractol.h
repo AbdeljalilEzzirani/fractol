@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:20 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/18 20:35:58 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/19 02:42:14 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		Burning_Ship_function_pixel_put(t_data *x);
 void		ft_putstr(char *s);
 int			f_zoom(int button, int x, int y, t_data *param);
 void		msg_list_display(void);
-void check_fractal(char *scmp, t_data *x);
+void		check_fractal(char *scmp, t_data *x);
 int			flesh_key_hook(int keycode, t_data *param);
 int			close_window(int keycode, t_data *param);
 int			tab_key_hook(int keycode, t_data *param);

@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:17:56 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/18 20:51:50 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/19 02:54:51 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int f_zoom(int button, int x, int y, t_data *param)
 	}
 	else if(param->set == 1)
 		Julia_function_pixel_put(param);
-	// else if(param->set == 2)
-	// 	(param);
+	else if(param->set == 2)
+		Burning_Ship_function_pixel_put(param);
 	return 0;
 }
 

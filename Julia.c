@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 18:18:17 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/18 19:19:37 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/19 03:01:11 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int color_degrade(int itr)
     r = itr * 3555;
 	g = (1 - itr)  * itr * 3555;
 	b = (1 - itr) * (1 - itr) * itr * 3555;
-    // if (itr == 0)
-    //     return (b << 24 | g << 16 | r << 8 | 0);
-    // else if (itr == 1)
-    //     return (0 << 24 | b << 16 | g << 8 | r);
-    // else if (itr == 2)
-    //     return (r << 24 | g << 16 | b << 8 | 0);
+    if (itr == 1)
+        return (b << 24 | g << 16 | r << 8 | 0);
+    else if (itr == 2)
+        return (0 << 24 | b << 16 | g << 8 | r);
+    else if (itr == 3)
+        return (r << 24 | g << 16 | b << 8 | 0);
 	return (0 << 24 | r << 16 | g << 8 | b);
 }
 
@@ -59,8 +59,10 @@ int Julia(double x, double y, t_data *data)
     double r;
     double i;
 
-    a = ((x - (width / 2)) / data->zoom);
-    b = ((y - (heigth / 2)) / data->zoom);
+    // a = ((x - (width / 2)) / data->zoom);
+    // b = ((y - (heigth / 2)) / data->zoom);
+    a = (x * data -> zoom_width) - data -> var_wid;
+    b = (y * data -> zoom_height) - data -> var_hei;
     k = a;
     l = b;
     p = 0.0;
@@ -87,11 +89,11 @@ void Julia_function_pixel_put(t_data *x)
         j = 0.0;
 		while (j < width) 
 		{
-			itr = Julia(i, j, x);
+			itr = Julia(i+x->x, j+x->y, x);
 			if (itr == ITR)
-				my_mlx_pixel_put(x,i+x->x,j+x->y, color_degrade(0xFF141D % 4));
+				my_mlx_pixel_put(x,i,j, color_degrade(0xFF141D % 4));
 			else
-				my_mlx_pixel_put(x,i+x->x,j+x->y, color_degrade(0x000000FF % 4));
+				my_mlx_pixel_put(x,i,j, color_degrade(0x000000FF % 4));
 			j++;
 		}
         i++;

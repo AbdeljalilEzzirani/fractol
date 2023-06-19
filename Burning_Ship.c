@@ -6,7 +6,7 @@
 /*   By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 18:11:30 by abez-zir          #+#    #+#             */
-/*   Updated: 2023/06/18 18:18:20 by abez-zir         ###   ########.fr       */
+/*   Updated: 2023/06/19 01:42:21 by abez-zir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ int Burning_Ship_fractal(double x, double y, t_data *data)
     double r;
     double i;
 
-    a = ((x - (width / 2)) / data->zoom);
-    b = ((y - (heigth / 2)) / data->zoom);
+    // a = ((x - (width / 2)) / data->zoom);
+    // b = ((y - (heigth / 2)) / data->zoom);
+    a = (x * data -> zoom_width) - data -> var_wid;
+    b = (y * data -> zoom_height) - data -> var_hei;
     k = a;
     l = b;
     p = 0.0;
@@ -50,11 +52,11 @@ void Burning_Ship_function_pixel_put(t_data *x)
         j = 0.0;
 		while (j < width) 
 		{
-			itr = Burning_Ship_fractal(i, j, x);
+			itr = Burning_Ship_fractal(i+x->x, j+x->y, x);
 			if (itr == ITR)
-				my_mlx_pixel_put(x, i+x->x, j+x->y, color_degrade(0xFFD700));
+				my_mlx_pixel_put(x, i, j, color_degrade(0xFFD700));
 			else
-				my_mlx_pixel_put(x, i+x->x, j+x->y, color_degrade(0x2F4F4F));
+				my_mlx_pixel_put(x, i, j, color_degrade(0x2F4F4F));
 			j++;
 		}
         i++;
