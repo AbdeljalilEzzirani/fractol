@@ -6,7 +6,7 @@
 #    By: abez-zir <abez-zir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 18:18:07 by abez-zir          #+#    #+#              #
-#    Updated: 2023/06/18 18:20:53 by abez-zir         ###   ########.fr        #
+#    Updated: 2023/06/20 18:31:06 by abez-zir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ MLX = -lmlx -framework OpenGL -framework AppKit
 
 NAME = fractol
 
-SRC = Julia.c Mandelbrot.c Utils.c main.c stockfunction.c fractol.c Burning_Ship.c
+SRC = Julia.c Mandelbrot.c Utils.c main.c Burning_Ship.c
 
 OBJ = $(SRC:.c=.o)
 
